@@ -21,14 +21,12 @@ public class Terminal {
     private Revenda revenda;
     ArrayList<Cliente> clientes;
     Vendedor vendedor;
-    private boolean PRODUCAO = false;
     private String SAIR = "SAIR";
     private String VOLTAR = "VOLTAR";
 
     public Terminal(Revenda revenda, ArrayList<Cliente> clientes) {
         this.revenda = revenda;
         this.clientes = clientes;
-        PRODUCAO = false;
         this.start();
     }
 
@@ -144,10 +142,7 @@ public class Terminal {
         Veiculo veiculo = null;
         boolean isMenuCadastro = false, isSubMenu;
         try {
-            if (PRODUCAO)
-                this.vendedor = revenda.getVendedores().get(1);
-            else
-                this.vendedor = opMenuVendedor(revenda.getVendedores(), input);
+            this.vendedor = opMenuVendedor(revenda.getVendedores(), input);
 
             do {
                 isSubMenu = true;
@@ -398,7 +393,7 @@ public class Terminal {
         do {
             menuPessoa(list, titulo);
             op = opcaoMenu(input, x);
-        } while (op != 0);
+        } while (op > x || op < 0);
         return list.get(op - 1);
     }
 
