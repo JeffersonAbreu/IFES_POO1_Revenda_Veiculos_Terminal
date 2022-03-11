@@ -19,10 +19,12 @@ import utils.Util;
 
 public class Terminal {
     private Revenda revenda;
-    ArrayList<Cliente> clientes;
-    Vendedor vendedor;
-    private String SAIR = "SAIR";
-    private String VOLTAR = "VOLTAR";
+    private ArrayList<Cliente> clientes;
+    private Vendedor vendedor;
+    private final String SAIR = "SAIR";
+    private final String VOLTAR = "VOLTAR";
+    private final int ALTURA = 20;
+    private final int LARGURA = 100;
 
     public Terminal(Revenda revenda, ArrayList<Cliente> clientes) {
         this.revenda = revenda;
@@ -48,18 +50,19 @@ public class Terminal {
         boolean alternativa;
         do {
             limparTela();
+            System.out.printf("\n");
             System.out.printf("+%s+\n", "-".repeat(100));
             System.out.printf("|%s|\n", " ".repeat(100));
             if (entrada) {
-                System.out.printf("|%s%s%s|\n", " ".repeat(41), " ENTRADA - VEICULO", " ".repeat(41));
+                printCENTER("ENTRADA - VEICULO");
+                System.out.printf("|%s|\n", " ".repeat(100));
                 showNFE(veiculo, cliente, vendedor);
             } else {
-                System.out.printf("|%s%s%s|\n", " ".repeat(41), " SAIDA - VEICULO  ", " ".repeat(41));
+                printCENTER("SAIDA - VEICULO");
+                System.out.printf("|%s|\n", " ".repeat(100));
                 showNFS(veiculo, cliente, vendedor);
             }
-            System.out.printf("|%s|\n", " ".repeat(100));
-            System.out.printf("+%s+\n", "-".repeat(100));
-            printLines(13 + 5);
+            printLines(14);
 
             System.out.printf("\nNEGOCIAÇÃO DIGITE: 1 CONFIRMA ou 0 pra CANCELA: ");
             try {
@@ -85,19 +88,21 @@ public class Terminal {
         final DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         final Calendar cal = Calendar.getInstance();
         final String data = df.format(cal.getTime());
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "PROPRIETÁRIO:", "CPF/CNPJ:", "RESPONSÁVEL");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", vendedor.getRevenda().getNome().toUpperCase(),
+        final String format = "|  %-30s | %-30s | %-30s  |\n";
+        final String newLine = String.format("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
+        System.out.print(newLine);
+        System.out.printf(format, "PROPRIETÁRIO:", "CPF/CNPJ:", "RESPONSÁVEL");
+        System.out.printf(format, vendedor.getRevenda().getNome().toUpperCase(),
                 vendedor.getRevenda().getCnpj(), vendedor.getNome());
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "COMPRADOR:", "CPF/CNPJ:", "");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", cliente.getNome().toUpperCase(), cliente.getCpf(), "");
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "VEICULO:", "COR PREDOMINANTE:", "CATEGORIA:");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", veiculo.getNome().toUpperCase(), veiculo.getCor(),
+        System.out.print(newLine);
+        System.out.printf(format, "COMPRADOR:", "CPF/CNPJ:", "");
+        System.out.printf(format, cliente.getNome().toUpperCase(), cliente.getCpf(), "");
+        System.out.print(newLine);
+        System.out.printf(format, "VEICULO:", "COR PREDOMINANTE:", "CATEGORIA:");
+        System.out.printf(format, veiculo.getNome().toUpperCase(), veiculo.getCor(),
                 veiculo.getCategoria());
         System.out.printf("|--%-30s-+-%-30s-+-%-30s--\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "", "DATA:", "VALOR:");
+        System.out.printf(format, "", "DATA:", "VALOR:");
         System.out.printf("|  %-30s | %30s | %30.2f  |\n", "", data, veiculo.getValor());
         System.out.printf("|  %-30s +-%-30s-+-%-30s--|\n", "", "-".repeat(30), "-".repeat(30));
     }
@@ -106,19 +111,21 @@ public class Terminal {
         final DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         final Calendar cal = Calendar.getInstance();
         final String data = df.format(cal.getTime());
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "PROPRIETÁRIO:", "CPF/CNPJ:", "");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", cliente.getNome().toUpperCase(), cliente.getCpf(), "");
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "COMPRADOR:", "CPF/CNPJ:", "RESPONSÁVEL");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", vendedor.getRevenda().getNome().toUpperCase(),
+        final String format = "|  %-30s | %-30s | %-30s  |\n";
+        final String newLine = String.format("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
+        System.out.print(newLine);
+        System.out.printf(format, "PROPRIETÁRIO:", "CPF/CNPJ:", "");
+        System.out.printf(format, cliente.getNome().toUpperCase(), cliente.getCpf(), "");
+        System.out.print(newLine);
+        System.out.printf(format, "COMPRADOR:", "CPF/CNPJ:", "RESPONSÁVEL");
+        System.out.printf(format, vendedor.getRevenda().getNome().toUpperCase(),
                 vendedor.getRevenda().getCnpj(), vendedor.getNome());
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "VEICULO:", "COR PREDOMINANTE:", "CATEGORIA:");
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", veiculo.getNome().toUpperCase(), veiculo.getCor(),
+        System.out.print(newLine);
+        System.out.printf(format, "VEICULO:", "COR PREDOMINANTE:", "CATEGORIA:");
+        System.out.printf(format, veiculo.getNome().toUpperCase(), veiculo.getCor(),
                 veiculo.getCategoria());
-        System.out.printf("|--%-30s-+-%-30s-+-%-30s--|\n", "-".repeat(30), "-".repeat(30), "-".repeat(30));
-        System.out.printf("|  %-30s | %-30s | %-30s  |\n", "", "DATA:", "VALOR:");
+        System.out.print(newLine);
+        System.out.printf(format, "", "DATA:", "VALOR:");
         System.out.printf("|  %-30s | %30s | %30.2f  |\n", "", data, veiculo.getValor());
         System.out.printf("|  %-30s +-%-30s-+-%-30s--|\n", "", "-".repeat(30), "-".repeat(30));
     }
@@ -232,7 +239,7 @@ public class Terminal {
                         }
                         break;
                     default:
-                        menuPrincipal(SAIR);
+                        menuBAR(SAIR);
                         printLines(0);
                         op = opcaoMenu(input, 2);
                         isSubMenu = false;
@@ -271,9 +278,9 @@ public class Terminal {
     }
 
     private void listarVeiculos(List<Veiculo> veiculos, int x) {
-        menuPrincipal(VOLTAR);
+        menuBAR(VOLTAR);
         int lines = veiculos.size() + 4;
-        System.out.printf("|%s%s%s|", " ".repeat(46), "VEICULOS", " ".repeat(46));
+        printCENTER("LISTA DE VEICULOS");
         String formatTitulo = "| %2s | %-36s | %-21s | %-16s | %-11s |";
         String format = "| %2s | %-36s | %-21s | %-16s | %11s |";
         String cabecalho = String.format(formatTitulo, "ID", "NOME", "CATEGORIA", "COR", "VALOR");
@@ -284,26 +291,36 @@ public class Terminal {
         System.out.printf(cabecalho);
         System.out.printf(newLine);
         if (veiculos.size() == 0) {
-            lines = 13;
-            System.out.println();
-            printLines(lines++);
-            System.out.printf("|%s %s %s|\n", " ".repeat(35), "(  L I S T A    V A Z I A  )", " ".repeat(35));
-            System.out.printf("+%s+\n", "-".repeat(100));
+            lines = listaVazia();
         } else {
             for (Veiculo v : veiculos) {
                 System.out.println();
                 System.out.printf(format, ++x, v.getNome(), v.getCategoria(), v.getCor().name(),
                         String.valueOf(v.getValor()));
             }
-            System.out.println();
         }
+        System.out.println();
         printLines(lines);
     }
 
+    private void printCENTER(String text) {
+        int length = (text.length() % 2 == 0) ? text.length() : text.length() + 1;
+        int x = LARGURA / 2 - length / 2;
+        System.out.printf("|%s%-" + length + "s%s|", " ".repeat(x), text, " ".repeat(x));
+    }
+
+    private int listaVazia() {
+        System.out.println();
+        for (int i = 0; i < 7; i++)
+            System.out.printf("|%s|\n", " ".repeat(100));
+        printCENTER("(  L I S T A    V A Z I A  )");
+        return 12;
+    }
+
     private void listarClientes(int x) {
-        menuPrincipal(VOLTAR);
+        menuBAR(VOLTAR);
         int lines = clientes.size() + 4;
-        System.out.printf("|%s%s%s|", " ".repeat(46), "CLIENTES", " ".repeat(46));
+        printCENTER("LISTA DE CLIENTES");
         String format = "| %2s | %-76s | %-14s |";
         String cabecalho = String.format(format, "ID", "NOME", "CPF");
         String newLine = String.format("\n+-%2s-+-%-76s-+-%-14s-+", "-".repeat(2), "-".repeat(76), "-".repeat(14));
@@ -311,16 +328,20 @@ public class Terminal {
         System.out.println();
         System.out.printf(cabecalho);
         System.out.printf(newLine);
-        for (Cliente c : clientes) {
-            System.out.println();
-            System.out.printf(format, ++x, c.getNome(), c.getCpf());
+        if (clientes.size() == 0) {
+            lines = listaVazia();
+        } else {
+            for (Cliente c : clientes) {
+                System.out.println();
+                System.out.printf(format, ++x, c.getNome(), c.getCpf());
+            }
         }
         System.out.println();
         printLines(lines);
     }
 
     private void menuNegociacao() {
-        menuPrincipal(VOLTAR);
+        menuBAR(VOLTAR);
         int x = 2, position = 22, lines = 3;
         System.out.printf("|%s| %2d - %-15s |%s|\n", " ".repeat(position), ++x, "COMPRAR", " ".repeat(76 - position));
         System.out.printf("|%s| %2d - %-15s |%s|\n", " ".repeat(position), ++x, "VENDER", " ".repeat(76 - position));
@@ -329,7 +350,7 @@ public class Terminal {
     }
 
     private void menuCadastro() {
-        menuPrincipal(VOLTAR);
+        menuBAR(VOLTAR);
         int x = 2;
         int lines = 3;
         System.out.printf("| %2d - %-15s | %s |\n", ++x, "LISTAR CLIENTES", " ".repeat(75));
@@ -368,7 +389,7 @@ public class Terminal {
         System.out.printf("+-%s-+\n", "-".repeat(98));
     }
 
-    private void menuPrincipal(String esq) {
+    private void menuBAR(String esq) {
         limparTela();
         // MENU
         System.out.printf("\n");
@@ -407,7 +428,7 @@ public class Terminal {
 
         // MENU
         System.out.printf("\n");
-        System.out.printf("##-- SELECIONE UM %-8s %s-##\n\n", titulo, "-".repeat(max - 15));
+        System.out.printf("##-- SELECIONE UM(A) %-8s %s-##\n\n", titulo, "-".repeat(max - 15));
         System.out.printf("+-------------%s+\n", "-".repeat(max));
         for (Pessoa p : list)
             System.out.printf("| Opção %2d - %-" + (max) + "s |\n", ++x, p.getNome());
