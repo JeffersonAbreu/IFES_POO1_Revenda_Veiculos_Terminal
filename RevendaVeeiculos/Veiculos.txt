@@ -1,0 +1,15 @@
+ID:  7 ; Modelo: YAMAHA FAZER 250CC        ; R$:  17000,00 ; Cor: VERMELHO  ; Categoria: MOTO        ; ID Proprietario:  0
+ID:  8 ; Modelo: YAMAHA DRAGSTAR 650CC     ; R$:  27000,00 ; Cor: PRETO     ; Categoria: MOTO        ; ID Proprietario:  0
+ID:  9 ; Modelo: VW GOL                    ; R$:  17000,00 ; Cor: PRATA     ; Categoria: HATCH       ; ID Proprietario:  0
+ID: 10 ; Modelo: HONDA CIVIC               ; R$: 127000,00 ; Cor: PRETO     ; Categoria: SEDAN       ; ID Proprietario:  0
+ID: 11 ; Modelo: DODGER RAM                ; R$: 173000,00 ; Cor: PRATA     ; Categoria: CAMINHONETE ; ID Proprietario:  0
+ID: 12 ; Modelo: VW GOL                    ; R$:  27000,00 ; Cor: PRETO     ; Categoria: HATCH       ; ID Proprietario:  0
+ID: 13 ; Modelo: VW GOL                    ; R$:  37000,00 ; Cor: BRANCO    ; Categoria: HATCH       ; ID Proprietario:  0
+ID: 15 ; Modelo: SW4                       ; R$: 231000,00 ; Cor: PRATA     ; Categoria: SUV         ; ID Proprietario:  0
+ID:  1 ; Modelo: DODGER RAM                ; R$: 200000,00 ; Cor: PRETO     ; Categoria: CAMINHONETE ; ID Proprietario:  0
+ID:  2 ; Modelo: HYUNDAY HB20              ; R$:  70000,00 ; Cor: BRANCO    ; Categoria: HATCH       ; ID Proprietario:  0
+ID:  3 ; Modelo: HYUNDAY HB20              ; R$:  17000,00 ; Cor: AZUL      ; Categoria: HATCH       ; ID Proprietario:  2
+ID:  4 ; Modelo: HYUNDAY HB20              ; R$:  19000,00 ; Cor: VERMELHO  ; Categoria: HATCH       ; ID Proprietario:  2
+ID:  5 ; Modelo: HYUNDAY HB20              ; R$:  27000,00 ; Cor: PRATA     ; Categoria: HATCH       ; ID Proprietario:  2
+ID:  6 ; Modelo: HYUNDAY HB20              ; R$:  47000,00 ; Cor: PRETO     ; Categoria: HATCH       ; ID Proprietario:  2
+ID: 14 ; Modelo: EVEREST                   ; R$: 357000,00 ; Cor: PRETO     ; Categoria: SUV         ; ID Proprietario:  2
